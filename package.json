@@ -3,10 +3,7 @@
   "version": "0.0.1",
   "description": "A Redux middleware to count dispatch.",
   "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
-  "main": "./dist/index.js",
-  "files": [
-    "dist"
-  ],
+  "main": "./src/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps true",
     "test": "cross-env NODE_ENV=test mocha",
