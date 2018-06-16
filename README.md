@@ -35,28 +35,23 @@ import {
  * @param  {object} action action
  * @return {string|false}  counter key or not for count(false)
  */
-const filter = (type, action) => type
+const filter = (type, action) => 'dispatched ' + type
 
-// redux setup
-const initialState = {
-  /* initial state */
-}
-const reducer = (state = initialState, action) => {
-  /* reducer function logics */ return state
-}
+const initialState = {}
+
 const middlewares = [createCountDispatchMiddleware({ filter })]
 const store = createStore(
   combineReducers({
     dispatchCounter: countDispatchReducer,
   }),
   initialState,
-  applyMiddleware(...middlewares)
+  applyMiddleware(...middlewares),
 )
 
 store.dispatch({ type: 'hello' })
 store.dispatch({ type: 'hello' })
 store.dispatch({ type: 'world' })
-store.getState().dispatchCounter // { hello: 2, world: 1 }
+store.getState().dispatchCounter // { 'dispatched hello': 2, 'dispatched world': 1 }
 ```
 
 ## development
