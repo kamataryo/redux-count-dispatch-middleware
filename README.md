@@ -2,8 +2,6 @@
 
 [![Build Status](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware.svg?branch=master)](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware)
 [![Build status](https://ci.appveyor.com/api/projects/status/eocea8d71kqcmrim/branch/master?svg=true)](https://ci.appveyor.com/project/KamataRyo55333/redux-count-dispatch-middleware)
-[![codecov](https://codecov.io/gh/kamataryo/redux-count-dispatch-middleware/branch/master/graph/badge.svg)](https://codecov.io/gh/kamataryo/redux-count-dispatch-middleware)
-[![runkit](https://img.shields.io/badge/RunKit-Try%20Now%20%E2%96%B6%EF%B8%8F-green.svg)](https://runkit.com/593b1972dbdedb001293ebfe/593b1972dbdedb001293ebff)
 
 [![npm (scoped)](https://img.shields.io/npm/v/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
 [![downloads](https://img.shields.io/npm/dt/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
@@ -26,7 +24,10 @@ $ yarn add redux-count-dispatch-middleware
 
 ```javascript
 import { createStore, applyMiddleware, combineReducers } from 'redux'
-import { createCountDispatchMiddleware, dispatchCounterReducer } from 'redux-count-dispatch-middleware'
+import {
+  createCountDispatchMiddleware,
+  countDispatchReducer,
+} from 'redux-count-dispatch-middleware'
 
 /**
  * matcher
@@ -34,24 +35,28 @@ import { createCountDispatchMiddleware, dispatchCounterReducer } from 'redux-cou
  * @param  {object} action action
  * @return {string|false}  counter key or not for count(false)
  */
-const matcher = (type, action) => type
+const filter = (type, action) => type
 
 // redux setup
-const initialState = { /* initial state */ }
-const reducer = (state = initialState, action) => { /* reducer function logics */ return state }
-const middlewares = [createCountDispatchMiddleware(matcher)]
+const initialState = {
+  /* initial state */
+}
+const reducer = (state = initialState, action) => {
+  /* reducer function logics */ return state
+}
+const middlewares = [createCountDispatchMiddleware({ filter })]
 const store = createStore(
   combineReducers({
-    dispatchCounter: dispatchCounterReducer,
+    dispatchCounter: countDispatchReducer,
   }),
   initialState,
   applyMiddleware(...middlewares)
 )
 
-store.dispatch({type: 'hello'})
-store.dispatch({type: 'hello'})
-store.dispatch({type: 'world'})
-store.getState()[$count] // { hello: 2, world: 1 }
+store.dispatch({ type: 'hello' })
+store.dispatch({ type: 'hello' })
+store.dispatch({ type: 'world' })
+store.getState().dispatchCounter // { hello: 2, world: 1 }
 ```
 
 ## development
