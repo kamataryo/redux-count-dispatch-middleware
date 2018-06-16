@@ -14,9 +14,13 @@ export const reducer = (state = initialState, action) => {
   switch (type) {
     case ACTION_TYPES.INCREMENT: {
       const key = typeFilter(dispatchedType, action)
-      const copied = Object.assign({}, state)
-      copied[key] = (state[key] || 0) + 1
-      return copied
+      if (key === false) {
+        return state
+      } else {
+        const copied = Object.assign({}, state)
+        copied[key] = (state[key] || 0) + 1
+        return copied
+      }
     }
     default:
       return state

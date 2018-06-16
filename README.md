@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware.svg?branch=master)](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware)
 [![Build status](https://ci.appveyor.com/api/projects/status/yhpc128t9efo5b1k?svg=true)](https://ci.appveyor.com/project/kamataryo/redux-count-dispatch-middleware)
 
-
 [![npm (scoped)](https://img.shields.io/npm/v/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
 [![downloads](https://img.shields.io/npm/dt/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
 [![Dependency Status](https://img.shields.io/david/kamataryo/redux-count-dispatch-middleware.svg?style=flat)](https://david-dm.org/kamataryo/redux-count-dispatch-middleware)
@@ -34,9 +33,10 @@ import {
  * matcher
  * @param  {string} type   type
  * @param  {object} action action
- * @return {string|false}  counter key or not for count(false)
+ * @return {string|false}  counter key or false for no count
  */
-const filter = (type, action) => 'dispatched ' + type
+const filter = (type, action) =>
+  type === 'noop' ? false : 'dispatched ' + type
 
 const initialState = {}
 
@@ -46,12 +46,13 @@ const store = createStore(
     dispatchCounter: countDispatchReducer,
   }),
   initialState,
-  applyMiddleware(...middlewares),
+  applyMiddleware(...middlewares)
 )
 
 store.dispatch({ type: 'hello' })
 store.dispatch({ type: 'hello' })
 store.dispatch({ type: 'world' })
+store.dispatch({ type: 'noop' })
 store.getState().dispatchCounter // { 'dispatched hello': 2, 'dispatched world': 1 }
 ```
 
