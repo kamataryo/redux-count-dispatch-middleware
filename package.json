@@ -1,6 +1,6 @@
 {
   "name": "redux-count-dispatch-middleware",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "A Redux middleware to count dispatch.",
   "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
   "main": "./dist/index.js",
