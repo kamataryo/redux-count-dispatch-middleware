@@ -1,7 +1,8 @@
 # redux-count-dispatch-middleware
 
 [![Build Status](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware.svg?branch=master)](https://travis-ci.org/kamataryo/redux-count-dispatch-middleware)
-[![Build status](https://ci.appveyor.com/api/projects/status/eocea8d71kqcmrim/branch/master?svg=true)](https://ci.appveyor.com/project/KamataRyo55333/redux-count-dispatch-middleware)
+[![Build status](https://ci.appveyor.com/api/projects/status/yhpc128t9efo5b1k?svg=true)](https://ci.appveyor.com/project/kamataryo/redux-count-dispatch-middleware)
+
 
 [![npm (scoped)](https://img.shields.io/npm/v/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
 [![downloads](https://img.shields.io/npm/dt/redux-count-dispatch-middleware.svg)](https://www.npmjs.com/package/redux-count-dispatch-middleware)
