@@ -3,7 +3,7 @@
   "version": "0.0.2",
   "description": "A Redux middleware to count dispatch.",
   "author": "kamataryo <mugil.cephalus+github.com@gmail.com>",
-  "main": "./src/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./dist --source-maps true",
     "test": "cross-env NODE_ENV=test mocha",
@@ -12,7 +12,8 @@
     "deploy_keygen": "ssh-keygen -t rsa -b 4096 -C \"$(git config user.email)\" -f ./.travis_rsa -N ''",
     "encrypt_deploy_key": "travis encrypt-file ./.travis_rsa --add",
     "preversion": "npm run lint && npm test && git fetch",
-    "postversion": "git push origin master && git push origin $(git describe --abbrev=0 --tags)"
+    "postversion": "git push origin master && git push origin $(git describe --abbrev=0 --tags)",
+    "prepublish": "npm run build"
   },
   "keywords": [
     "redux",
